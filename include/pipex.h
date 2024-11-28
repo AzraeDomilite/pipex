@@ -6,7 +6,7 @@
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 14:03:32 by blucken           #+#    #+#             */
-/*   Updated: 2024/11/28 14:05:06 by blucken          ###   ########.fr       */
+/*   Updated: 2024/11/28 18:55:17 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ void	parent(char **av, int *pipe_fd, char **env);
 void	child(char **av, int *pipe_fd, char **env);
 void	exec(char *cmd, char **env);
 char	*get_path(char *cmd, char **env);
-char	*my_getenv(char *name, char **env);
+char	*get_env(char *name, char **env);
 
 #endif

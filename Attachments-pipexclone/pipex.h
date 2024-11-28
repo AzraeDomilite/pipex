@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: decortejohn <decortejohn@student.42.fr>    +#+  +:+       +#+        */
+/*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/31 18:31:27 by jdecorte          #+#    #+#             */
-/*   Updated: 2022/02/12 11:04:20 by decortejohn      ###   ########.fr       */
+/*   Updated: 2024/11/28 18:55:17 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <stdlib.h>
 
 int		open_file(char *file, int n);
-char	*my_getenv(char *name, char **env);
+char	*get_env(char *name, char **env);
 char	*get_path(char *cmd, char **env);
 void	exec(char *cmd, char **env);
 void	ft_free_tab(char **tab);

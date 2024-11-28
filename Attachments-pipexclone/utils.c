@@ -6,7 +6,7 @@
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 20:00:33 by decortejohn       #+#    #+#             */
-/*   Updated: 2024/11/28 14:04:29 by blucken          ###   ########.fr       */
+/*   Updated: 2024/11/28 18:55:17 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_free_tab(char **tab)
 	free(tab);
 }
 
-char	*my_getenv(char *name, char **env)
+char	*get_env(char *name, char **env)
 {
 	int		i;
 	int		j;
@@ -78,7 +78,7 @@ char	*get_path(char *cmd, char **env)
 	char	**s_cmd;
 
 	i = -1;
-	allpath = ft_split(my_getenv("PATH", env), ':');
+	allpath = ft_split(get_env("PATH", env), ':');
 	s_cmd = ft_split(cmd, ' ');
 	while (allpath[++i])
 	{

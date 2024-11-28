@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 14:05:22 by blucken           #+#    #+#             */
-/*   Updated: 2024/11/28 14:05:51 by blucken          ###   ########.fr       */
+/*   Created: 2024/11/28 18:55:17 by blucken           #+#    #+#             */
+/*   Updated: 2024/11/28 18:55:41 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	exec(char *cmd, char **env)
 		exit(EXIT_FAILURE);
 	}
 }
-char	*my_getenv(char *name, char **env)
+char	*get_env(char *name, char **env)
 {
 	int		i;
 	int		j;
@@ -85,7 +85,7 @@ char	*get_path(char *cmd, char **env)
 	char	**s_cmd;
 
 	i = -1;
-	allpath = ft_split(my_getenv("PATH", env), ':');
+	allpath = ft_split(get_env("PATH", env), ':');
 	s_cmd = ft_split(cmd, ' ');
 	while (allpath[++i])
 	{
