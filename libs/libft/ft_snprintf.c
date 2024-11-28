@@ -5,61 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 19:06:27 by blucken           #+#    #+#             */
-/*   Updated: 2024/11/28 19:07:33 by blucken          ###   ########.fr       */
+/*   Created: 2024/11/28 20:22:59 by blucken           #+#    #+#             */
+/*   Updated: 2024/11/28 20:23:02 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SNPRINTF_H
-# define FT_SNPRINTF_H
+#include "ft_snprintf.h"
+#include "libft.h"
 
-# include <stdarg.h>
-# include <stdlib.h>
-
-typedef struct s_format
+size_t	handle_input(char *str, size_t size, const char *format, va_list args)
 {
-	char	type;
-	int		width;
-	int		precision;
-	int		zero_pad;
-	int		left_align;
-	int		show_sign;
-	int		space;
-	int		alt_form;
-}	t_format;
+	size_t		count;
+	const char	*ptr;
 
-static size_t	handle_format(char *str, size_t size, const char **format,
-					va_list args, size_t pos);
-static t_format	parse_format(const char **format);
-static void		set_flags(t_format *fmt, char flag);
-static void		parse_width_precision(t_format *fmt, const char **ptr);
-static size_t	handle_padding(char *str, size_t size, const char *src,
-					size_t pos, t_format fmt);
-
-#endif
-
-int	ft_snprintf(char *str, size_t size, const char *format, ...)
-{
-	va_list	args;
-	int		written;
-	size_t	i;
-	size_t	count;
-
-	if (!format)
-		return (-1);
-	va_start(args, format);
-	i = 0;
 	count = 0;
-	while (format[i])
+	ptr = format;
+	while (*ptr)
 	{
-		if (format[i] == '%' && format[i + 1])
-			count += handle_format(str, size, &format[i], args, count);
-		else if (str && count < size - 1)
+		if (*ptr == '%' && *(ptr + 1))
 		{
-			str[count] = format[i];
-			count++;
+			ptr++;
+			count += handle_format(str, size, &ptr, args);
 		}
-		i++;
+		else
+		{
+			if (str && count < size - 1)
+				str[count] = *ptr;
+			count++;
+			ptr++;
+		}
 	}
 	if (str && size > 0)
 	{
@@ -68,17 +42,29 @@ int	ft_snprintf(char *str, size_t size, const char *format, ...)
 		else
 			str[size - 1] = '\0';
 	}
-	va_end(args);
 	return (count);
 }
 
-static t_format	parse_format(const char **format)
+int	ft_snprintf(char *str, size_t size, const char *format, ...)
+{
+	va_list	args;
+	size_t	count;
+
+	if (!format)
+		return (-1);
+	va_start(args, format);
+	count = handle_input(str, size, format, args);
+	va_end(args);
+	return ((int)count);
+}
+
+t_format	parse_format(const char **format)
 {
 	t_format	fmt;
 	const char	*ptr;
 
 	ft_memset(&fmt, 0, sizeof(fmt));
-	ptr = *format + 1;
+	ptr = *format;
 	while (*ptr)
 	{
 		if (ft_strchr("-+ #0", *ptr))
@@ -99,7 +85,7 @@ static t_format	parse_format(const char **format)
 	return (fmt);
 }
 
-static void	set_flags(t_format *fmt, char flag)
+void	set_flags(t_format *fmt, char flag)
 {
 	if (flag == '-')
 		fmt->left_align = 1;
@@ -113,7 +99,7 @@ static void	set_flags(t_format *fmt, char flag)
 		fmt->zero_pad = 1;
 }
 
-static void	parse_width_precision(t_format *fmt, const char **ptr)
+void	parse_width_precision(t_format *fmt, const char **ptr)
 {
 	if (**ptr == '.')
 	{
@@ -137,12 +123,13 @@ static void	parse_width_precision(t_format *fmt, const char **ptr)
 	}
 }
 
-static size_t	handle_format(char *str, size_t size, const char **format,
-					va_list args, size_t pos)
+size_t	handle_format(char *str, size_t size, const char **format, va_list args)
 {
 	t_format	fmt;
 	size_t		len;
+	size_t		pos;
 
+	pos = 0;
 	fmt = parse_format(format);
 	if (fmt.type == 'd' || fmt.type == 'i')
 		len = handle_int(str, size, va_arg(args, int), pos, fmt);
@@ -162,40 +149,35 @@ static size_t	handle_format(char *str, size_t size, const char **format,
 		len = handle_percent(str, size, pos);
 	else
 		len = 0;
+	(*format)++;
 	return (len);
 }
 
-static size_t	handle_padding(char *str, size_t size, const char *src,
-					size_t pos, t_format fmt)
+size_t	handle_padding(char *str, size_t size, const char *src, size_t pos, t_format fmt)
 {
 	size_t	len;
 	size_t	pad;
 	char	pad_char;
 
 	len = ft_strlen(src);
-	if (fmt.width > len)
+	if ((size_t)fmt.width > len)
 	{
 		pad = fmt.width - len;
-		pad_char = (fmt.zero_pad && !fmt.left_align) ? '0' : ' ';
+		if (fmt.zero_pad && !fmt.left_align)
+			pad_char = '0';
+		else
+			pad_char = ' ';
 		if (!fmt.left_align)
-		{
-			write_padding(str, size, pos, pad_char, pad);
-			pos += pad;
-		}
-		write_str(str, size, pos, src);
+			pos += write_padding(str, size, pos, pad_char, pad);
+		pos += write_str(str, size, pos, src);
 		if (fmt.left_align)
-		{
-			pos += len;
-			write_padding(str, size, pos, ' ', pad);
-		}
+			pos += write_padding(str, size, pos, ' ', pad);
 		return (fmt.width);
 	}
-	write_str(str, size, pos, src);
-	return (len);
+	return (write_str(str, size, pos, src));
 }
 
-static void	write_padding(char *str, size_t size, size_t pos,
-				char pad_char, size_t count)
+size_t	write_padding(char *str, size_t size, size_t pos, char pad_char, size_t count)
 {
 	size_t	i;
 
@@ -205,9 +187,10 @@ static void	write_padding(char *str, size_t size, size_t pos,
 		str[pos + i] = pad_char;
 		i++;
 	}
+	return (i);
 }
 
-static void	write_str(char *str, size_t size, size_t pos, const char *src)
+size_t	write_str(char *str, size_t size, size_t pos, const char *src)
 {
 	size_t	i;
 
@@ -217,4 +200,101 @@ static void	write_str(char *str, size_t size, size_t pos, const char *src)
 		str[pos + i] = src[i];
 		i++;
 	}
+	return (i);
+}
+
+size_t	handle_int(char *str, size_t size, int value, size_t pos, t_format fmt)
+{
+	char	*num_str;
+	size_t	len;
+
+	num_str = ft_itoa(value);
+	if (!num_str)
+		return (0);
+	len = handle_padding(str, size, num_str, pos, fmt);
+	free(num_str);
+	return (len);
+}
+
+size_t	handle_uint(char *str, size_t size, unsigned int value, size_t pos, t_format fmt)
+{
+	char	*num_str;
+	size_t	len;
+
+	num_str = ft_utoa(value);
+	if (!num_str)
+		return (0);
+	len = handle_padding(str, size, num_str, pos, fmt);
+	free(num_str);
+	return (len);
+}
+
+size_t	handle_hex(char *str, size_t size, unsigned int value, size_t pos, t_format fmt)
+{
+	char	*num_str;
+	size_t	len;
+
+	num_str = ft_utoa_base(value, 16);
+	if (!num_str)
+		return (0);
+	if (fmt.type == 'X')
+		ft_strtoupper(num_str);
+	len = handle_padding(str, size, num_str, pos, fmt);
+	free(num_str);
+	return (len);
+}
+
+size_t	handle_ptr(char *str, size_t size, void *value, size_t pos, t_format fmt)
+{
+	char	*addr_str;
+	size_t	len;
+
+	addr_str = ft_ptoa(value);
+	if (!addr_str)
+		return (0);
+	len = handle_padding(str, size, addr_str, pos, fmt);
+	free(addr_str);
+	return (len);
+}
+
+size_t	handle_string(char *str, size_t size, char *value, size_t pos, t_format fmt)
+{
+	size_t	len;
+
+	if (!value)
+		value = "(null)";
+	len = handle_padding(str, size, value, pos, fmt);
+	return (len);
+}
+
+size_t	handle_char(char *str, size_t size, int value, size_t pos)
+{
+	char	c;
+
+	c = (char)value;
+	if (str && pos < size - 1)
+		str[pos] = c;
+	pos++;
+	return (pos);
+}
+
+size_t	handle_float(char *str, size_t size, double value, size_t pos, t_format fmt)
+{
+	char	*num_str;
+	size_t	len;
+
+	num_str = ft_ftoa(value, fmt.precision);
+	if (!num_str)
+		return (0);
+	len = handle_padding(str, size, num_str, pos, fmt);
+	free(num_str);
+	return (len);
+}
+
+size_t	handle_percent(char *str, size_t size, size_t pos)
+{
+	if (str && pos < size - 1)
+		str[pos] = '%';
+	pos++;
+	return (pos);
 }

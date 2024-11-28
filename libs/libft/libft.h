@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 15:21:28 by blucken           #+#    #+#             */
-/*   Updated: 2024/11/28 15:21:30 by blucken          ###   ########.fr       */
+/*   Created: 2024/11/28 19:25:58 by blucken           #+#    #+#             */
+/*   Updated: 2024/11/28 20:24:14 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,24 @@
 # include <sys/stat.h>
 # include <fcntl.h> 
 # include <stdint.h>
-
+# include <stdarg.h>
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct s_format
+{
+	char	type;
+	int		width;
+	int		precision;
+	int		zero_pad;
+	int		left_align;
+	int		show_sign;
+	int		space;
+	int		alt_form;
+}	t_format;
 
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_bzero(void *s, size_t n);
@@ -77,5 +89,11 @@ int		ft_numlen(long long n);
 int		ft_clamp(int value, int min, int max);
 char	*ft_join_and_free(char *int_str, char *frac_str);
 char	*ft_ftoa(double n, int precision);
+int		ft_snprintf(char *str, size_t size, const char *format, ...);
+char	*ft_utoa(unsigned int n);
+char	*ft_utoa_base(unsigned int n, int base);
+char	*ft_ptoa(void *ptr);
+void	ft_strtoupper(char *str);
+int		ft_islower(int c);
 
 #endif
