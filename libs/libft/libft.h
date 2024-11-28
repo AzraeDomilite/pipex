@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 20:49:08 by blucken           #+#    #+#             */
-/*   Updated: 2024/11/28 20:49:13 by blucken          ###   ########.fr       */
+/*   Created: 2024/11/28 22:15:22 by blucken           #+#    #+#             */
+/*   Updated: 2024/11/28 22:15:30 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ char	*ft_utoa_base(unsigned int n, int base);
 char	*ft_ptoa(void *ptr);
 void	ft_strtoupper(char *str);
 int		ft_islower(int c);
+int		ft_isspace(char c);
 
 #endif

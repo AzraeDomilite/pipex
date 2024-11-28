@@ -2,7 +2,7 @@ NAME = pipex
 OS = $(shell uname)
 
 CC = gcc
-CFLAGS =  -Wall -Wextra -Werror -I./include
+CFLAGS = -Wall -Wextra -Werror
 
 LIBS_DIR = ./libs
 OBJ_DIR = ./obj
