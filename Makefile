@@ -28,10 +28,10 @@ all: $(LIBFT) $(NAME)
 
 $(NAME): $(OBJ_FILES)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) $(LIBFT)
-	@echo "$(GREEN)Compilation of fractol successful!   😊$(RESET)"
+	@echo "$(GREEN)Compilation of pipex successful!   😊$(RESET)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(MLX_INC) -o $@ -c $<
+	@$(CC) $(CFLAGS) -o $@ -c $<
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)

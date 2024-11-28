@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blucken <blucken@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 13:09:27 by blucken           #+#    #+#             */
-/*   Updated: 2024/10/18 13:09:27 by blucken          ###   ########.ch       */
+/*   Created: 2024/11/28 15:21:28 by blucken           #+#    #+#             */
+/*   Updated: 2024/11/28 15:21:30 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int		ft_tolower(int c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strcmp(const char *s1, const char *s2);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *d, const char *s, size_t dstsize);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
@@ -70,5 +71,11 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void	ft_free_tab(char **tab);
+char	*ft_lltoa(long long n, long long nb);
+int		ft_numlen(long long n);
+int		ft_clamp(int value, int min, int max);
+char	*ft_join_and_free(char *int_str, char *frac_str);
+char	*ft_ftoa(double n, int precision);
 
 #endif
