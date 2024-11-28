@@ -5,20 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 19:17:48 by blucken           #+#    #+#             */
-/*   Updated: 2024/11/28 19:23:10 by blucken          ###   ########.fr       */
+/*   Created: 2024/11/28 21:09:45 by blucken           #+#    #+#             */
+/*   Updated: 2024/11/28 21:24:48 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
+# include "../libs/libft/libft.h"
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include <sys/wait.h>
 # include <stdio.h>
 # include <limits.h>
+// #include <linux/limits.h>
 
 /* Process functions */
 void	parent(char **av, int *pipe_fd, char **env);

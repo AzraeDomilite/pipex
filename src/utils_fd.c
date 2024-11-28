@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   utils_fd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 21:03:13 by blucken           #+#    #+#             */
-/*   Updated: 2024/11/28 21:03:32 by blucken          ###   ########.fr       */
+/*   Created: 2028/11/20 21:02:47 by blucken           #+#    #+#             */
+/*   Updated: 2024/11/28 21:03:29 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-int	main(int ac, char **av, char **env)
+void	redirect_io(int oldfd, int newfd)
 {
-	int		pipe_fd[2];
-	pid_t	pid;
-	int		status;
+	if (dup2(oldfd, newfd) == -1)
+		error_exit("dup2", 1);
+}
 
-	check_args(ac);
-	if (pipe(pipe_fd) == -1)
-		error_exit("pipe", 1);
-	pid = fork();
-	if (pid == -1)
-		error_exit("fork", 1);
-	if (pid == 0)
-		child(av, pipe_fd, env);
-	parent(av, pipe_fd, env);
-	waitpid(pid, &status, 0);
-	return (EXIT_SUCCESS);
+int	open_file(char *file, int flags, mode_t mode)
+{
+	int	fd;
+
+	if (mode)
+		fd = open(file, flags, mode);
+	else
+		fd = open(file, flags);
+	if (fd == -1)
+		error_exit("open", 1);
+	return (fd);
 }
