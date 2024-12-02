@@ -5,15 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 22:09:59 by blucken           #+#    #+#             */
-/*   Updated: 2024/11/28 22:18:08 by blucken          ###   ########.fr       */
+/*   Created: 2024/12/02 11:56:00 by blucken           #+#    #+#             */
+/*   Updated: 2024/12/02 11:56:24 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "../libs/libft/libft.h"
+# include "../libs/libft/include/libft.h"
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>

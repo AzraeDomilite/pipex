@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 22:06:04 by blucken           #+#    #+#             */
-/*   Updated: 2024/11/28 22:22:26 by blucken          ###   ########.fr       */
+/*   Created: 2024/12/02 10:56:16 by blucken           #+#    #+#             */
+/*   Updated: 2024/12/02 10:56:19 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,5 @@ char	*get_path(char *cmd, char **env)
 		free(exec);
 	}
 	ft_free_tab(allpath);
-	return (NULL); // Return NULL instead of cmd when command is not found
+	return (NULL);
 }
