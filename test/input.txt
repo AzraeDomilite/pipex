@@ -1,4 +1,1 @@
-
-This is a sample input file.
-It contains several lines of text.
-Used for testing the pipex program.
+test
