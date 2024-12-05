@@ -6,7 +6,7 @@
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:51:48 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/05 18:52:19 by blucken          ###   ########.fr       */
+/*   Updated: 2024/12/05 18:56:15 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 /**
  * @brief Create pipes for the pipex program.
  * 
- * This function allocates memory for the pipes and creates the pipes using the `pipe` system call.
+ * This function allocates memory for the pipes and creates the pipes using the 
+ * `pipe` system call.
  * 
  * @param data The pipex data structure.
  */
@@ -60,9 +61,9 @@ void	exec_cmd(int index, char **argv, char **env, t_pipex *data)
 /**
  * @brief The main function of the pipex bonus program.
  * 
- * This function sets up a pipeline between multiple commands using `pipe` and `fork`.
- * It creates multiple pipes, forks child processes, and uses `dup2` to redirect input
- * and output file descriptors.
+ * This function sets up a pipeline between multiple commands using `pipe` and 
+ * `fork`. It creates multiple pipes, forks child processes, and uses `dup2` to 
+ * redirect input and output file descriptors.
  * 
  * @param argc The argument count.
  * @param argv The argument values.
@@ -72,10 +73,12 @@ void	exec_cmd(int index, char **argv, char **env, t_pipex *data)
  * @details
  * - `fork`: Creates a new process by duplicating the calling process.
  * - `access`: Checks the file accessibility.
- * - `pipe`: Creates a unidirectional data channel that can be used for interprocess communication.
+ * - `pipe`: Creates a unidirectional data channel that can be used for 
+ *   interprocess communication.
  * - `dup`: Duplicates a file descriptor.
  * - `dup2`: Duplicates a file descriptor to a specified file descriptor.
- * - `execve`: Executes a program, replacing the current process image with a new one.
+ * - `execve`: Executes a program, replacing the current process image with a 
+ *   new one.
  * - `unlink`: Deletes a name from the filesystem.
  */
 int	main(int argc, char **argv, char **env)

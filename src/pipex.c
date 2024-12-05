@@ -6,7 +6,7 @@
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:50:44 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/05 18:51:48 by blucken          ###   ########.fr       */
+/*   Updated: 2024/12/05 18:56:14 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,12 @@ void	parent_process(char **argv, char **env, int *fd)
  * @details
  * - `fork`: Creates a new process by duplicating the calling process.
  * - `access`: Checks the file accessibility.
- * - `pipe`: Creates a unidirectional data channel that can be used for interprocess communication.
+ * - `pipe`: Creates a unidirectional data channel that can be used for 
+ *   interprocess communication.
  * - `dup`: Duplicates a file descriptor.
  * - `dup2`: Duplicates a file descriptor to a specified file descriptor.
- * - `execve`: Executes a program, replacing the current process image with a new one.
+ * - `execve`: Executes a program, replacing the current process image with a 
+ *   new one.
  */
 int	main(int argc, char **argv, char **env)
 {

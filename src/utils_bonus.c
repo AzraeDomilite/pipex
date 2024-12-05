@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 18:01:03 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/05 18:52:24 by blucken          ###   ########.fr       */
+/*   Created: 2024/12/05 18:56:13 by blucken           #+#    #+#             */
+/*   Updated: 2024/12/05 18:56:13 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 /**
  * @brief Get the paths from the environment variable.
  * 
- * This function searches for the PATH environment variable and splits it into an array of paths.
+ * This function searches for the PATH environment variable and splits it into 
+ * an array of paths.
  * 
  * @param env The environment variables.
  * @return char** The paths split by ':'.
@@ -37,7 +38,8 @@ char	**get_paths_from_env(char **env)
 /**
  * @brief Free the paths array and return the path.
  * 
- * This function frees the memory allocated for the paths array and returns the specified path.
+ * This function frees the memory allocated for the paths array and returns the 
+ * specified path.
  * 
  * @param path The path to return.
  * @param paths The paths array to free.
@@ -52,7 +54,8 @@ char	*zero_access(char *path, char **paths)
 /**
  * @brief Close all pipes and free the allocated memory.
  * 
- * This function closes all pipes and frees the memory allocated for the pipes array.
+ * This function closes all pipes and frees the memory allocated for the pipes 
+ * array.
  * 
  * @param data The pipex data structure.
  */
@@ -74,7 +77,8 @@ void	close_pipes(t_pipex *data)
 /**
  * @brief Print an error message for bad arguments and return the value.
  * 
- * This function prints an error message for bad arguments and returns the specified value.
+ * This function prints an error message for bad arguments and returns the 
+ * specified value.
  * 
  * @param value The value to return.
  * @return int The value.

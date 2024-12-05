@@ -6,7 +6,7 @@
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:25:50 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/05 18:52:22 by blucken          ###   ########.fr       */
+/*   Updated: 2024/12/05 18:56:15 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ t_args	set_args(void)
 /**
  * @brief Count the number of arguments in a command string.
  * 
- * This function counts the number of arguments in a command string, taking into account quoted arguments.
+ * This function counts the number of arguments in a command string, taking 
+ * into account quoted arguments.
  * 
  * @param s The command string.
  * @return int The number of arguments.
