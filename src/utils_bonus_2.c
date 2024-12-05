@@ -6,18 +6,33 @@
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:56:25 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/05 17:56:29 by blucken          ###   ########.fr       */
+/*   Updated: 2024/12/05 18:42:32 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
 
+/**
+ * @brief Initialize the pipex data structure and create pipes.
+ * 
+ * @param data The pipex data structure.
+ * @param argc The argument count.
+ * @param argv The argument values.
+ */
 void	init_and_create_pipes(t_pipex *data, int argc, char **argv)
 {
 	init_pipex(data, argc, argv);
 	create_pipes(data);
 }
 
+/**
+ * @brief Fork and execute commands.
+ * 
+ * @param data The pipex data structure.
+ * @param argv The argument values.
+ * @param env The environment variables.
+ * @return pid_t* The array of process IDs.
+ */
 pid_t	*fork_and_exec_cmds(t_pipex *data, char **argv, char **env)
 {
 	pid_t	*pid;
@@ -39,6 +54,12 @@ pid_t	*fork_and_exec_cmds(t_pipex *data, char **argv, char **env)
 	return (pid);
 }
 
+/**
+ * @brief Wait for all child processes to finish.
+ * 
+ * @param pid The array of process IDs.
+ * @param cmd_count The number of commands.
+ */
 void	wait_for_children(pid_t *pid, int cmd_count)
 {
 	int	i;
@@ -52,6 +73,13 @@ void	wait_for_children(pid_t *pid, int cmd_count)
 	exit(1);
 }
 
+/**
+ * @brief Initialize the pipex data structure.
+ * 
+ * @param data The pipex data structure.
+ * @param argc The argument count.
+ * @param argv The argument values.
+ */
 void	init_pipex(t_pipex *data, int argc, char **argv)
 {
 	data->is_heredoc = !ft_strcmp(argv[1], "here_doc");

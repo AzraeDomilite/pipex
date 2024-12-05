@@ -6,12 +6,17 @@
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:56:13 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/05 17:56:14 by blucken          ###   ########.fr       */
+/*   Updated: 2024/12/05 18:42:35 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
 
+/**
+ * @brief Handle the heredoc input.
+ * 
+ * @param data The pipex data structure.
+ */
 void	handle_heredoc(t_pipex *data)
 {
 	char	*line;
@@ -39,6 +44,12 @@ void	handle_heredoc(t_pipex *data)
 	data->infile = ".heredoc_tmp";
 }
 
+/**
+ * @brief Handle the input for a command.
+ * 
+ * @param index The index of the command.
+ * @param data The pipex data structure.
+ */
 void	handle_input(int index, t_pipex *data)
 {
 	int	in_fd;
@@ -61,6 +72,12 @@ void	handle_input(int index, t_pipex *data)
 	}
 }
 
+/**
+ * @brief Handle the output for a command.
+ * 
+ * @param index The index of the command.
+ * @param data The pipex data structure.
+ */
 void	handle_output(int index, t_pipex *data)
 {
 	int	out_fd;

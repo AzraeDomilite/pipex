@@ -6,12 +6,19 @@
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:59:50 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/05 17:59:53 by blucken          ###   ########.fr       */
+/*   Updated: 2024/12/05 18:42:31 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
+/**
+ * @brief Handle the child process.
+ * 
+ * @param argv The argument values.
+ * @param env The environment variables.
+ * @param fd The file descriptors.
+ */
 void	child_process(char **argv, char **env, int *fd)
 {
 	int	filein;
@@ -33,6 +40,13 @@ void	child_process(char **argv, char **env, int *fd)
 	execute(argv[2], env);
 }
 
+/**
+ * @brief Handle the parent process.
+ * 
+ * @param argv The argument values.
+ * @param env The environment variables.
+ * @param fd The file descriptors.
+ */
 void	parent_process(char **argv, char **env, int *fd)
 {
 	int	fileout;
@@ -50,6 +64,14 @@ void	parent_process(char **argv, char **env, int *fd)
 	execute(argv[3], env);
 }
 
+/**
+ * @brief The main function of the pipex program.
+ * 
+ * @param argc The argument count.
+ * @param argv The argument values.
+ * @param env The environment variables.
+ * @return int The exit status.
+ */
 int	main(int argc, char **argv, char **env)
 {
 	int		fd[2];

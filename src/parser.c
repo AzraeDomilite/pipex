@@ -6,12 +6,17 @@
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:25:50 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/05 17:42:46 by blucken          ###   ########.fr       */
+/*   Updated: 2024/12/05 18:42:30 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
+/**
+ * @brief Initialize the t_args structure.
+ * 
+ * @return t_args The initialized t_args structure.
+ */
 t_args	set_args(void)
 {
 	t_args	args;
@@ -22,6 +27,12 @@ t_args	set_args(void)
 	return (args);
 }
 
+/**
+ * @brief Count the number of arguments in a command string.
+ * 
+ * @param s The command string.
+ * @return int The number of arguments.
+ */
 int	count_args(char *s)
 {
 	t_args	args;
@@ -50,6 +61,12 @@ int	count_args(char *s)
 	return (args.count + 1);
 }
 
+/**
+ * @brief Extract a quoted argument from a command string.
+ * 
+ * @param str The command string.
+ * @return char* The extracted argument.
+ */
 static char	*extract_quoted(char **str)
 {
 	char	*start;
@@ -67,6 +84,12 @@ static char	*extract_quoted(char **str)
 	return (result);
 }
 
+/**
+ * @brief Extract an unquoted argument from a command string.
+ * 
+ * @param str The command string.
+ * @return char* The extracted argument.
+ */
 static char	*extract_unquoted(char **str)
 {
 	char	*start;
@@ -81,6 +104,12 @@ static char	*extract_unquoted(char **str)
 	return (ft_substr(start, 0, len));
 }
 
+/**
+ * @brief Parse a command string with quotes into an array of arguments.
+ * 
+ * @param cmd The command string.
+ * @return char** The array of arguments.
+ */
 char	**parse_cmd_with_quotes(char *cmd)
 {
 	t_parse	parse;

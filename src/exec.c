@@ -6,12 +6,19 @@
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:46:00 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/05 17:46:01 by blucken          ###   ########.fr       */
+/*   Updated: 2024/12/05 18:42:35 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
+/**
+ * @brief Find the path of a command.
+ * 
+ * @param cmd The command.
+ * @param env The environment variables.
+ * @return char* The path of the command.
+ */
 char	*find_path(char *cmd, char **env)
 {
 	char	**paths;
@@ -39,6 +46,9 @@ char	*find_path(char *cmd, char **env)
 	return (ft_strdup(cmd));
 }
 
+/**
+ * @brief Print an error message and exit.
+ */
 void	error(void)
 {
 	ft_putstr_fd("Error: ", 2);
@@ -47,6 +57,11 @@ void	error(void)
 	exit(errno);
 }
 
+/**
+ * @brief Print a command not found error message and exit.
+ * 
+ * @param cmd The command.
+ */
 void	cmd_not_found(char *cmd)
 {
 	ft_putstr_fd("pipex: command not found: ", 2);
@@ -55,6 +70,12 @@ void	cmd_not_found(char *cmd)
 	exit(127);
 }
 
+/**
+ * @brief Execute a command.
+ * 
+ * @param argv The command string.
+ * @param env The environment variables.
+ */
 void	execute(char *argv, char **env)
 {
 	char	**cmd;

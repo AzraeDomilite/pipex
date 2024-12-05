@@ -6,12 +6,17 @@
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 18:00:51 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/05 18:00:51 by blucken          ###   ########.fr       */
+/*   Updated: 2024/12/05 18:42:31 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex_bonus.h"
 
+/**
+ * @brief Create pipes for the pipex program.
+ * 
+ * @param data The pipex data structure.
+ */
 void	create_pipes(t_pipex *data)
 {
 	int	i;
@@ -31,6 +36,14 @@ void	create_pipes(t_pipex *data)
 	}
 }
 
+/**
+ * @brief Execute a command.
+ * 
+ * @param index The index of the command.
+ * @param argv The argument values.
+ * @param env The environment variables.
+ * @param data The pipex data structure.
+ */
 void	exec_cmd(int index, char **argv, char **env, t_pipex *data)
 {
 	handle_input(index, data);
@@ -39,6 +52,14 @@ void	exec_cmd(int index, char **argv, char **env, t_pipex *data)
 	execute(argv[index + 2 + data->is_heredoc], env);
 }
 
+/**
+ * @brief The main function of the pipex bonus program.
+ * 
+ * @param argc The argument count.
+ * @param argv The argument values.
+ * @param env The environment variables.
+ * @return int The exit status.
+ */
 int	main(int argc, char **argv, char **env)
 {
 	t_pipex	data;
