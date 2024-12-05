@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parser_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 17:25:50 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/04 17:26:21 by blucken          ###   ########.fr       */
+/*   Created: 2024/12/05 12:09:30 by blucken           #+#    #+#             */
+/*   Updated: 2024/12/05 12:09:50 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,34 +24,30 @@ t_args	set_args(void)
 
 int	count_args(char *s)
 {
-	int		count;
-	int		in_quote;
-	char	quote_char;
+	t_args	args;
 
-	count = 0;
-	in_quote = 0;
-	quote_char = 0;
+	args = set_args();
 	while (*s)
 	{
 		if (*s == '"' || *s == '\'')
 		{
-			if (!in_quote)
+			if (!args.in_quote)
 			{
-				in_quote = 1;
-				quote_char = *s;
+				args.in_quote = 1;
+				args.quote_char = *s;
 			}
-			else if (*s == quote_char)
-				in_quote = 0;
+			else if (*s == args.quote_char)
+				args.in_quote = 0;
 		}
-		else if ((*s == ' ' || *s == '\t') && !in_quote)
+		else if ((*s == ' ' || *s == '\t') && !args.in_quote)
 		{
 			while (*(s + 1) == ' ' || *(s + 1) == '\t')
 				s++;
-			count++;
+			args.count++;
 		}
 		s++;
 	}
-	return (count + 1);
+	return (args.count + 1);
 }
 
 static char	*extract_quoted(char **str)

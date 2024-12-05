@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_execve.c                                      :+:      :+:    :+:   */
+/*   ft_free_array.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 11:38:19 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/03 11:38:26 by blucken          ###   ########.fr       */
+/*   Created: 2024/12/03 15:48:04 by blucken           #+#    #+#             */
+/*   Updated: 2024/12/03 15:48:08 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "../include/libft.h"
 
-extern char **environ;
-
-int	main()
+void	ft_free_array(char **array)
 {
-	char *args[] = {"ls", "-l", NULL};
-	char **env = environ;
+	int	i;
 
-	if (execve(args[0], args, env) == -1)
-	{
-		perror("execve");
-		exit(EXIT_FAILURE);
-	}
-	return (0);
+	if (!array)
+		return ;
+	i = 0;
+	while (array[i])
+		free(array[i++]);
+	free(array);
 }

@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 17:23:02 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/04 17:23:04 by blucken          ###   ########.fr       */
+/*   Created: 2024/12/04 17:22:46 by blucken           #+#    #+#             */
+/*   Updated: 2024/12/04 17:22:54 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include <errno.h>
+# include <sys/wait.h>
 # include <string.h>
+# include <errno.h>
 # include "../libs/libft/include/libft.h"
-# include <stdio.h>
+
+typedef struct s_pipex
+{
+	int		pipe_count;
+	int		**pipes;
+	int		cmd_count;
+	int		is_heredoc;
+	char	*limiter;
+	char	*infile;
+	char	*outfile;
+}			t_pipex;
 
 typedef struct s_args
 {
@@ -36,13 +47,14 @@ typedef struct s_parse
 	char	*tmp;
 }			t_parse;
 
-void	child_process(char **argv, char **env, int *fd);
-void	parent_process(char **argv, char **env, int *fd);
-void	error(void);
 void	cmd_not_found(char *cmd);
+void	error(void);
 void	execute(char *argv, char **env);
-char	*find_path(char *cmd, char **env);
 char	**parse_cmd_with_quotes(char *cmd);
-void	ft_free_array(char **arr);
+void	create_pipes(t_pipex *data);
+void	close_pipes(t_pipex *data);
+void	handle_heredoc(t_pipex *data);
+void	init_pipex(t_pipex *data, int argc, char **argv);
+void	exec_cmd(int index, char **argv, char **env, t_pipex *data);
 int		count_args(char *s);
 #endif

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 22:15:22 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/02 11:06:59 by blucken          ###   ########.fr       */
+/*   Created: 2024/12/05 12:12:28 by blucken           #+#    #+#             */
+/*   Updated: 2024/12/05 12:12:35 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	ft_free_tab(char **tab);
+void	ft_free_array(char **array);
 char	*ft_lltoa(long long n, long long nb);
 int		ft_numlen(long long n);
 int		ft_clamp(int value, int min, int max);
@@ -97,5 +98,11 @@ char	*ft_ptoa(void *ptr);
 void	ft_strtoupper(char *str);
 int		ft_islower(int c);
 int		ft_isspace(char c);
+char	*ft_join_buffer_stash(char *stash, char *buffer);
+char	*ft_next(char *buffer);
+char	*ft_line(char *buffer);
+char	*read_file(int fd, char *res);
+char	*get_next_line(int fd);
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 
 #endif

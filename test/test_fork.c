@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 int	main(void)
 {
@@ -24,5 +25,5 @@ int	main(void)
 		printf("Le PID de mon fils est: %d\n", pid);
 	}
 
-	return (0);
+	return (EXIT_SUCCESS);
 }

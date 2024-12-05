@@ -5,81 +5,73 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 22:09:09 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/02 10:56:20 by blucken          ###   ########.fr       */
+/*   Created: 2024/12/04 17:02:21 by blucken           #+#    #+#             */
+/*   Updated: 2024/12/04 17:02:43 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-void	exec(char *cmd, char **env)
+void	child_process(char **argv, char **env, int *fd)
 {
-	char	**args;
-	char	*path;
+	int	filein;
 
-	args = parse_command(cmd);
-	path = get_path(args[0], env);
-	if (path == NULL)
+	filein = open(argv[1], O_RDONLY);
+	if (filein == -1)
 	{
-		ft_putstr_fd("pipex: command not found: ", 2);
-		ft_putendl_fd(args[0], 2);
-		ft_free_tab(args);
-		exit(EXIT_FAILURE);
+		ft_putstr_fd("Error: ", 2);
+		perror(argv[1]);
+		exit(1);
 	}
-	if (execve(path, args, env) == -1)
-	{
-		perror("Error");
-		ft_putstr_fd("pipex: execution failed: ", 2);
-		ft_putendl_fd(args[0], 2);
-		ft_free_tab(args);
-		free(path);
-		exit(EXIT_FAILURE);
-	}
+	if (dup2(filein, STDIN_FILENO) == -1)
+		error();
+	if (dup2(fd[1], STDOUT_FILENO) == -1)
+		error();
+	close(fd[0]);
+	close(fd[1]);
+	close(filein);
+	execute(argv[2], env);
 }
 
-void	child(char **av, int *p_fd, char **env)
+void	parent_process(char **argv, char **env, int *fd)
 {
-	int		fd;
+	int	fileout;
 
-	fd = open_file(av[1], O_RDONLY, 0);
-	dup2(fd, STDIN_FILENO);
-	dup2(p_fd[1], STDOUT_FILENO);
-	close_pipes(p_fd);
-	close(fd);
-	exec(av[2], env);
+	fileout = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (fileout == -1)
+		error();
+	if (dup2(fd[0], STDIN_FILENO) == -1)
+		error();
+	if (dup2(fileout, STDOUT_FILENO) == -1)
+		error();
+	close(fd[0]);
+	close(fd[1]);
+	close(fileout);
+	execute(argv[3], env);
 }
 
-void	parent(char **av, int *p_fd, char **env)
+int	main(int argc, char **argv, char **env)
 {
-	int		fd;
-
-	fd = open_file(av[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	dup2(fd, STDOUT_FILENO);
-	dup2(p_fd[0], STDIN_FILENO);
-	close_pipes(p_fd);
-	close(fd);
-	exec(av[3], env);
-}
-
-int	main(int ac, char **av, char **env)
-{
-	int		p_fd[2];
+	int		fd[2];
 	pid_t	pid;
+	int		status;
 
-	if (ac != 5)
-		error_exit("usage: ./pipex file1 cmd1 cmd2 file2", 1);
-	if (pipe(p_fd) == -1)
-		error_exit("pipe", 1);
+	if (argc != 5)
+	{
+		ft_putstr_fd("Error: Bad arguments\n", 2);
+		ft_putstr_fd("Ex: ./pipex <file1> <cmd1> <cmd2> <file2>\n", 1);
+		return (1);
+	}
+	if (pipe(fd) == -1)
+		error();
 	pid = fork();
 	if (pid == -1)
-	{
-		perror("Error");
-		error_exit("fork", 1);
-	}
+		error();
 	if (pid == 0)
-		child(av, p_fd, env);
-	parent(av, p_fd, env);
-	if (waitpid(pid, NULL, 0) == -1)
-		error_exit("waitpid", 1);
-	return (EXIT_SUCCESS);
+		child_process(argv, env, fd);
+	parent_process(argv, env, fd);
+	waitpid(pid, &status, 0);
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	return (1);
 }

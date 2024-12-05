@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_execve.c                                      :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/03 11:38:19 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/03 11:38:26 by blucken          ###   ########.fr       */
+/*   Created: 2024/12/04 16:43:19 by blucken           #+#    #+#             */
+/*   Updated: 2024/12/04 16:43:20 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-extern char **environ;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-int	main()
-{
-	char *args[] = {"ls", "-l", NULL};
-	char **env = environ;
+# include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
 
-	if (execve(args[0], args, env) == -1)
-	{
-		perror("execve");
-		exit(EXIT_FAILURE);
-	}
-	return (0);
-}
+char	*ft_join_buffer_stash(char *stash, char *buffer);
+char	*ft_next(char *buffer);
+char	*ft_line(char *buffer);
+char	*read_file(int fd, char *res);
+char	*get_next_line(int fd);
+
+#endif

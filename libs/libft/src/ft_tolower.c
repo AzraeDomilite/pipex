@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 20:08:26 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/02 11:44:01 by blucken          ###   ########.fr       */
+/*   Created: 2024/12/03 12:53:40 by blucken           #+#    #+#             */
+/*   Updated: 2024/12/03 12:53:41 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
+
 int	ft_tolower(int c)
 {
 	if (c >= 'A' && 'Z' >= c)
