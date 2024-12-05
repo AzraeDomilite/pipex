@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 18:47:28 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/05 18:47:33 by blucken          ###   ########.fr       */
+/*   Created: 2024/12/05 18:51:48 by blucken           #+#    #+#             */
+/*   Updated: 2024/12/05 18:52:19 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 /**
  * @brief Create pipes for the pipex program.
+ * 
+ * This function allocates memory for the pipes and creates the pipes using the `pipe` system call.
  * 
  * @param data The pipex data structure.
  */
@@ -38,6 +40,9 @@ void	create_pipes(t_pipex *data)
 
 /**
  * @brief Execute a command.
+ * 
+ * This function handles the input and output redirection for a command,
+ * closes all pipes, and executes the command.
  * 
  * @param index The index of the command.
  * @param argv The argument values.
@@ -70,6 +75,8 @@ void	exec_cmd(int index, char **argv, char **env, t_pipex *data)
  * - `pipe`: Creates a unidirectional data channel that can be used for interprocess communication.
  * - `dup`: Duplicates a file descriptor.
  * - `dup2`: Duplicates a file descriptor to a specified file descriptor.
+ * - `execve`: Executes a program, replacing the current process image with a new one.
+ * - `unlink`: Deletes a name from the filesystem.
  */
 int	main(int argc, char **argv, char **env)
 {

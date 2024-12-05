@@ -6,7 +6,7 @@
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 17:25:50 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/05 18:42:30 by blucken          ###   ########.fr       */
+/*   Updated: 2024/12/05 18:52:22 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 /**
  * @brief Initialize the t_args structure.
+ * 
+ * This function initializes the t_args structure with default values.
  * 
  * @return t_args The initialized t_args structure.
  */
@@ -29,6 +31,8 @@ t_args	set_args(void)
 
 /**
  * @brief Count the number of arguments in a command string.
+ * 
+ * This function counts the number of arguments in a command string, taking into account quoted arguments.
  * 
  * @param s The command string.
  * @return int The number of arguments.
@@ -64,6 +68,8 @@ int	count_args(char *s)
 /**
  * @brief Extract a quoted argument from a command string.
  * 
+ * This function extracts a quoted argument from a command string.
+ * 
  * @param str The command string.
  * @return char* The extracted argument.
  */
@@ -87,6 +93,8 @@ static char	*extract_quoted(char **str)
 /**
  * @brief Extract an unquoted argument from a command string.
  * 
+ * This function extracts an unquoted argument from a command string.
+ * 
  * @param str The command string.
  * @return char* The extracted argument.
  */
@@ -106,6 +114,8 @@ static char	*extract_unquoted(char **str)
 
 /**
  * @brief Parse a command string with quotes into an array of arguments.
+ * 
+ * This function parses a command string with quotes into an array of arguments.
  * 
  * @param cmd The command string.
  * @return char** The array of arguments.

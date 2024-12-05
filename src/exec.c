@@ -6,7 +6,7 @@
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:46:00 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/05 18:42:35 by blucken          ###   ########.fr       */
+/*   Updated: 2024/12/05 18:52:20 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 /**
  * @brief Find the path of a command.
+ * 
+ * This function searches for the command in the directories specified by the PATH environment variable.
  * 
  * @param cmd The command.
  * @param env The environment variables.
@@ -48,6 +50,8 @@ char	*find_path(char *cmd, char **env)
 
 /**
  * @brief Print an error message and exit.
+ * 
+ * This function prints an error message and exits the program with the appropriate error code.
  */
 void	error(void)
 {
@@ -59,6 +63,8 @@ void	error(void)
 
 /**
  * @brief Print a command not found error message and exit.
+ * 
+ * This function prints a command not found error message and exits the program with the appropriate error code.
  * 
  * @param cmd The command.
  */
@@ -72,6 +78,8 @@ void	cmd_not_found(char *cmd)
 
 /**
  * @brief Execute a command.
+ * 
+ * This function parses the command string, finds the command path, and executes the command.
  * 
  * @param argv The command string.
  * @param env The environment variables.

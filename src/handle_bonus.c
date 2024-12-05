@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 17:56:13 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/05 18:42:35 by blucken          ###   ########.fr       */
+/*   Created: 2024/12/05 18:52:19 by blucken           #+#    #+#             */
+/*   Updated: 2024/12/05 18:52:19 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 /**
  * @brief Handle the heredoc input.
+ * 
+ * This function handles the heredoc input by reading lines from the standard input
+ * until the limiter is encountered, and writes the lines to a temporary file.
  * 
  * @param data The pipex data structure.
  */
@@ -47,6 +50,8 @@ void	handle_heredoc(t_pipex *data)
 /**
  * @brief Handle the input for a command.
  * 
+ * This function handles the input redirection for a command.
+ * 
  * @param index The index of the command.
  * @param data The pipex data structure.
  */
@@ -74,6 +79,8 @@ void	handle_input(int index, t_pipex *data)
 
 /**
  * @brief Handle the output for a command.
+ * 
+ * This function handles the output redirection for a command.
  * 
  * @param index The index of the command.
  * @param data The pipex data structure.

@@ -6,7 +6,7 @@
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:56:25 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/05 18:42:32 by blucken          ###   ########.fr       */
+/*   Updated: 2024/12/05 18:52:23 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 /**
  * @brief Initialize the pipex data structure and create pipes.
+ * 
+ * This function initializes the pipex data structure and creates the necessary pipes.
  * 
  * @param data The pipex data structure.
  * @param argc The argument count.
@@ -27,6 +29,8 @@ void	init_and_create_pipes(t_pipex *data, int argc, char **argv)
 
 /**
  * @brief Fork and execute commands.
+ * 
+ * This function forks child processes and executes the specified commands.
  * 
  * @param data The pipex data structure.
  * @param argv The argument values.
@@ -57,6 +61,8 @@ pid_t	*fork_and_exec_cmds(t_pipex *data, char **argv, char **env)
 /**
  * @brief Wait for all child processes to finish.
  * 
+ * This function waits for all child processes to finish and exits with the appropriate status.
+ * 
  * @param pid The array of process IDs.
  * @param cmd_count The number of commands.
  */
@@ -75,6 +81,8 @@ void	wait_for_children(pid_t *pid, int cmd_count)
 
 /**
  * @brief Initialize the pipex data structure.
+ * 
+ * This function initializes the pipex data structure based on the provided arguments.
  * 
  * @param data The pipex data structure.
  * @param argc The argument count.
