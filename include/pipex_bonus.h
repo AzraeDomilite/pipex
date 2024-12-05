@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 17:22:46 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/04 17:22:54 by blucken          ###   ########.fr       */
+/*   Created: 2024/12/05 17:59:44 by blucken           #+#    #+#             */
+/*   Updated: 2024/12/05 18:01:11 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,13 @@ void	handle_heredoc(t_pipex *data);
 void	init_pipex(t_pipex *data, int argc, char **argv);
 void	exec_cmd(int index, char **argv, char **env, t_pipex *data);
 int		count_args(char *s);
+char	**get_paths_from_env(char **env);
+char	*zero_access(char *path, char **paths);
+void	handle_input(int index, t_pipex *data);
+void	handle_output(int index, t_pipex *data);
+void	init_and_create_pipes(t_pipex *data, int argc, char **argv);
+pid_t	*fork_and_exec_cmds(t_pipex *data, char **argv, char **env);
+void	wait_for_children(pid_t *pid, int cmd_count);
+int		bad_args(int value);
+
 #endif

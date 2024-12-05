@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 17:23:02 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/04 17:23:04 by blucken          ###   ########.fr       */
+/*   Created: 2024/12/05 18:01:11 by blucken           #+#    #+#             */
+/*   Updated: 2024/12/05 18:01:14 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,8 @@ char	*find_path(char *cmd, char **env);
 char	**parse_cmd_with_quotes(char *cmd);
 void	ft_free_array(char **arr);
 int		count_args(char *s);
+char	**get_paths_from_env(char **env);
+char	*zero_access(char *path, char **paths);
+int		bad_args(int value);
+
 #endif

@@ -9,8 +9,8 @@ SRC_DIR = ./src
 LIBFT_DIR = $(LIBS_DIR)/libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRC_FILES = $(SRC_DIR)/exec.c $(SRC_DIR)/parser.c $(SRC_DIR)/pipex.c
-BONUS_FILES = $(SRC_DIR)/exec_bonus.c $(SRC_DIR)/parser_bonus.c $(SRC_DIR)/pipex_bonus.c
+SRC_FILES = $(SRC_DIR)/exec.c $(SRC_DIR)/parser.c $(SRC_DIR)/pipex.c $(SRC_DIR)/utils.c
+BONUS_FILES = $(SRC_DIR)/exec_bonus.c $(SRC_DIR)/parser_bonus.c $(SRC_DIR)/pipex_bonus.c $(SRC_DIR)/utils_bonus.c $(SRC_DIR)/utils_bonus_2.c $(SRC_DIR)/handle_bonus.c
 
 OBJ_FILES = $(SRC_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 BONUS_OBJ = $(BONUS_FILES:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

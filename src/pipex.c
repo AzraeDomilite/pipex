@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 17:02:21 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/04 17:02:43 by blucken          ###   ########.fr       */
+/*   Created: 2024/12/05 17:59:50 by blucken           #+#    #+#             */
+/*   Updated: 2024/12/05 17:59:53 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,7 @@ int	main(int argc, char **argv, char **env)
 	int		status;
 
 	if (argc != 5)
-	{
-		ft_putstr_fd("Error: Bad arguments\n", 2);
-		ft_putstr_fd("Ex: ./pipex <file1> <cmd1> <cmd2> <file2>\n", 1);
-		return (1);
-	}
+		return (bad_args(1));
 	if (pipe(fd) == -1)
 		error();
 	pid = fork();

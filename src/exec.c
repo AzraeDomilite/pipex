@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 16:57:16 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/04 16:57:16 by blucken          ###   ########.fr       */
+/*   Created: 2024/12/05 17:46:00 by blucken           #+#    #+#             */
+/*   Updated: 2024/12/05 17:46:01 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,11 @@ char	*find_path(char *cmd, char **env)
 	char	*part_path;
 	int		i;
 
-	i = 0;
 	if (!env || !*env || access(cmd, X_OK) == 0)
 		return (ft_strdup(cmd));
-	while (env[i] && ft_strnstr(env[i], "PATH=", 5) == 0)
-		i++;
-	if (!env[i])
-		return (ft_strdup(cmd));
-	paths = ft_split(env[i] + 5, ':');
+	paths = get_paths_from_env(env);
 	if (!paths)
-		return (NULL);
+		return (ft_strdup(cmd));
 	i = 0;
 	while (paths[i])
 	{
@@ -36,10 +31,7 @@ char	*find_path(char *cmd, char **env)
 		path = ft_strjoin(part_path, cmd);
 		free(part_path);
 		if (access(path, X_OK) == 0)
-		{
-			ft_free_array(paths);
-			return (path);
-		}
+			return (zero_access(path, paths));
 		free(path);
 		i++;
 	}
@@ -57,10 +49,10 @@ void	error(void)
 
 void	cmd_not_found(char *cmd)
 {
+	ft_putstr_fd("pipex: command not found: ", 2);
 	ft_putstr_fd(cmd, 2);
-	ft_putstr_fd(strerror(errno), 2);
 	ft_putstr_fd("\n", 2);
-	exit(errno);
+	exit(127);
 }
 
 void	execute(char *argv, char **env)
