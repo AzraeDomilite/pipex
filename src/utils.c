@@ -6,12 +6,18 @@
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 17:44:22 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/05 18:00:10 by blucken          ###   ########.fr       */
+/*   Updated: 2024/12/05 18:40:13 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
+/**
+ * @brief Get the paths from the environment variable.
+ * 
+ * @param env The environment variables.
+ * @return char** The paths split by ':'.
+ */
 char	**get_paths_from_env(char **env)
 {
 	int		i;
@@ -26,12 +32,25 @@ char	**get_paths_from_env(char **env)
 	return (paths);
 }
 
+/**
+ * @brief Free the paths array and return the path.
+ * 
+ * @param path The path to return.
+ * @param paths The paths array to free.
+ * @return char* The path.
+ */
 char	*zero_access(char *path, char **paths)
 {
 	ft_free_array(paths);
 	return (path);
 }
 
+/**
+ * @brief Print an error message for bad arguments and return the value.
+ * 
+ * @param value The value to return.
+ * @return int The value.
+ */
 int	bad_args(int value)
 {
 	ft_putstr_fd("Error: Bad arguments\n", 2);
