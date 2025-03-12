@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blucken <blucken@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/05 18:01:11 by blucken           #+#    #+#             */
-/*   Updated: 2024/12/05 18:01:14 by blucken          ###   ########.fr       */
+/*   Created: 2025/03/12 15:24:20 by blucken           #+#    #+#             */
+/*   Updated: 2025/03/12 15:24:20 by blucken          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <string.h>
 # include "../libs/libft/include/libft.h"
 # include <stdio.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
 typedef struct s_args
 {
